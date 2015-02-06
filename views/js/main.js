@@ -18,7 +18,6 @@ cameron *at* udacity *dot* com
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
-
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -286,20 +285,24 @@ function getNoun(y) {
 var adjectives = ["dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific"];  // types of adjectives for pizza titles
 var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi"];                        // types of nouns for pizza titles
 
+// Stores lengths of adjectives and nouns arrays
+var adjLen = adjectives.length;
+var nounsLen = nouns.length;
+
 // Generates random numbers for getAdj and getNoun functions and returns a new pizza name
 function generator(adj, noun) {
   var adjectives = getAdj(adj);
   var nouns = getNoun(noun);
-  var randomAdjective = parseInt(Math.random() * adjectives.length);
-  var randomNoun = parseInt(Math.random() * nouns.length);
+  var randomAdjective = parseInt(Math.random() * adjLen);
+  var randomNoun = parseInt(Math.random() * nounsLen);
   var name = "The " + adjectives[randomAdjective].capitalize() + " " + nouns[randomNoun].capitalize();
   return name;
 }
 
 // Chooses random adjective and random noun
 function randomName() {
-  var randomNumberAdj = parseInt(Math.random() * adjectives.length);
-  var randomNumberNoun = parseInt(Math.random() * nouns.length);
+  var randomNumberAdj = parseInt(Math.random() * adjLen);
+  var randomNumberNoun = parseInt(Math.random() * nounsLen);
   return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
 }
 
@@ -361,40 +364,15 @@ var makeRandomPizza = function() {
 
 // returns a DOM element for each pizza
 var pizzaElementGenerator = function(i) {
-  var pizzaContainer,             // contains pizza title, image and list of ingredients
-      pizzaImageContainer,        // contains the pizza image
-      pizzaImage,                 // the pizza image itself
-      pizzaDescriptionContainer,  // contains the pizza title and list of ingredients
-      pizzaName,                  // the pizza name itself
-      ul;                         // the list of ingredients
+  var pizzaContainer;             // contains pizza title, image and list of ingredients
+  var pizzaContainerHTML = '<div class="col-md-6"><img class="img-responsive" src="images/pizza.png" width=""></div><div class="col-md-6"><h4>' + randomName() + '</h4><ul>' + makeRandomPizza() +'</ul></div>';
 
-  pizzaContainer  = document.createElement("div");
-  pizzaImageContainer = document.createElement("div");
-  pizzaImage = document.createElement("img");
-  pizzaDescriptionContainer = document.createElement("div");
-
+  pizzaContainer = document.createElement("div");
   pizzaContainer.classList.add("randomPizzaContainer");
   pizzaContainer.style.width = "33.33%";
   pizzaContainer.style.height = "325px";
-  pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
-  pizzaImageContainer.classList.add("col-md-6");
-
-  pizzaImage.src = "images/pizza.png";
-  pizzaImage.classList.add("img-responsive");
-  pizzaImageContainer.appendChild(pizzaImage);
-  pizzaContainer.appendChild(pizzaImageContainer);
-
-
-  pizzaDescriptionContainer.classList.add("col-md-6");
-
-  pizzaName = document.createElement("h4");
-  pizzaName.innerHTML = randomName();
-  pizzaDescriptionContainer.appendChild(pizzaName);
-
-  ul = document.createElement("ul");
-  ul.innerHTML = makeRandomPizza();
-  pizzaDescriptionContainer.appendChild(ul);
-  pizzaContainer.appendChild(pizzaDescriptionContainer);
+  pizzaContainer.id = "pizza" + i;  // gives each pizza element a unique id
+  pizzaContainer.innerHTML = pizzaContainerHTML;
 
   return pizzaContainer;
 };
@@ -516,11 +494,10 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  var docScrollTop = document.body.scrollTop;
-  for (var i = 0; i < items.length; i++) {
-    // var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-
-    var phase = Math.sin((docScrollTop / 1250) + (i % 5));
+  var itemsLen = items.length;
+  var docScrollTop = document.body.scrollTop / 1250;
+  for (var i = 0; i < itemsLen; i++) {
+    var phase = Math.sin(docScrollTop + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -542,22 +519,21 @@ function goAnimate() {
 window.addEventListener('scroll', goAnimate);
 
 // Generates the sliding pizzas when the page loads.
-var Pizza = function() {
-  var pizza = document.createElement("img");
-  pizza.className = "mover";
-  pizza.src = "images/pizza.png";
-  pizza.style.height = "100px";
-  pizza.style.width = "73.333px";
-  return pizza;
-};
-
-var querySelect = document.querySelector("#movingPizzas1");
-
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  var querySelect = document.querySelector("#movingPizzas1");
 
-  for (var i = 0; i < 200; i++) {
+  var Pizza = function() {
+    var pizza = document.createElement("img");
+    pizza.className = "mover";
+    pizza.src = "images/pizza.png";
+    pizza.style.height = "100px";
+    pizza.style.width = "73.333px";
+    return pizza;
+  };
+
+  for (var i = 0; i < 100; i++) {
     var elem = new Pizza();
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
