@@ -1,6 +1,7 @@
 /** {
   outline: 1px solid red !important;
 }*/
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -30,9 +31,18 @@ form {
 }
 
 .mover {
+  background-image: url("images/pizza_mover.png");
   position: fixed;
-  width: 256px;
+  // width: 256px;
   z-index: -1;
+  height: 94px;
+  width: 73px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
 }
 
 .randomPizzaContainer {
@@ -46,6 +56,6 @@ form {
   clear:both;
 }
 
- .container {
+.container {
   background-color: rgba(240, 60, 60, 0.8);
 }
