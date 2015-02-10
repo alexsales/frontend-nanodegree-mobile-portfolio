@@ -32,17 +32,7 @@ module.exports = function(grunt) {
 					'views/dist-html-minify/pizza.html': ['views/pizza.html']
 				}
 			}
-		},
-		/*
-		copy: {
-			dev_target: {
-				files: {
-					'dev-html-raw/': ['index.html'],
-					'views/dev-html-raw/': ['views/pizza.html']
-				}
-			}
-		},
-		*/		
+		},	
 		watch: {
 			js_target: {
 				files: ['js/*.js', 'views/js/*.js'],
@@ -52,12 +42,6 @@ module.exports = function(grunt) {
 				files: ['css/*.css', 'views/css/*.css'],
 				tasks: ['default']
 			},
-			/*
-			dev_target: {
-				files: ['index.html', 'views/pizza.html'],
-				tasks: ['default']
-			},
-			*/
 			dist_target: {
 				files: ['index.html', 'views/pizza.html'],
 				tasks: ['default']
@@ -69,9 +53,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	// grunt.loadNpmTasks('grunt-contrib-copy');
 
-	// grunt.registerTask('default', ['uglify', 'cssmin', 'htmlmin', 'copy', 'watch']);
 	grunt.registerTask('default', ['uglify', 'cssmin', 'htmlmin', 'watch']);
 
 };

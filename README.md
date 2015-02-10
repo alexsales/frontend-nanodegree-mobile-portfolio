@@ -1,3 +1,37 @@
+WEBSITE PERFORMANCE OPTIMIZATION
+=======================================
+
+Summary:
+Optimized mock portfolio website for both mobile and web. Optimizations needed to produce a Google Pagespeed Insights score of 90 or better.
+
+Separately, the pizza project involved optimizing animated, scrolling, graphics so that the animation created runs at an average 60 FPS.
+
+Tools / Techniques:
+- CSS Translate and Rotation to promote graphics into their own layers
+- NPM to install Grunt
+- Grunt to run automate tasks such as minify code
+- ngrok to run a secure connection to the local project files
+- Pagespeed Insights
+- Minifying text files
+- JS async
+
+=======================================
+
+List of resources:
+
+https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+http://www.w3schools.com/jsref/prop_win_innerheight.asp
+http://www.appneta.com/blog/bootstrap-pagespeed/
+http://gruntjs.com/getting-started
+https://blog.openshift.com/day-5-gruntjs-let-someone-else-do-my-tedious-repetitive-tasks/
+https://developer.chrome.com/devtools/docs/rendering-settings
+http://benfrain.com/improving-css-performance-fixed-position-elements/
+http://www.html5rocks.com/en/tutorials/speed/layers/
+http://davidwalsh.name/translate3d
+http://www.w3schools.com/css/css3_3dtransforms.asp
+
+=======================================
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
