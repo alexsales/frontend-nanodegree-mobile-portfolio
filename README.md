@@ -6,6 +6,9 @@ Optimized mock portfolio website for both mobile and web. Optimizations needed t
 
 Separately, the pizza project involved optimizing animated, scrolling, graphics so that the animation created runs at an average 60 FPS.
 
+Link to GitHub Pages:
+http://alexsales.github.io/frontend-nanodegree-mobile-portfolio/
+
 Tools / Techniques:
 - CSS Translate and Rotation to promote graphics into their own layers
 - NPM to install Grunt
@@ -14,6 +17,8 @@ Tools / Techniques:
 - Pagespeed Insights
 - Minifying text files
 - JS async
+- GitHub
+- GitHub Pages
 
 =======================================
 
