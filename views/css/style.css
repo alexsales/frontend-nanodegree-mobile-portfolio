@@ -69,3 +69,19 @@ form {
 .container {
   background-color: rgba(240, 60, 60, 0.8);
 }
+
+/* Media Queries */
+
+@media only screen and (max-width: 991px) {
+  .col-md-4 img.img-responsive {
+    background-image: url('images/pizzeria-720.jpg');
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .col-md-4 img.img-responsive {
+    background-image: url('images/pizzeria-360.jpg');
+  }
+}
+
+
