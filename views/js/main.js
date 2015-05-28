@@ -440,18 +440,23 @@ window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
 var pizzasDiv = document.getElementById("randomPizzas");
+var allPizzaContainers;
+var pizzaContainerLength;
 
-for (var i = 2; i < 75; i++) {
-  pizzasDiv.appendChild(pizzaElementGenerator(i));
-
-  if (i == 74) {
-    var allPizzaContainers = document.getElementsByClassName("randomPizzaContainer");
-    var pizzaContainerLength = document.getElementsByClassName("randomPizzaContainer").length;
-
-    console.log(allPizzaContainers);
-    // console.log(allPizzasArray);
+function appendToPizzasDiv(getContainerLength) {
+  for (var i = 2; i < 75; i++) {
+    pizzasDiv.appendChild(pizzaElementGenerator(i));
   }
+
+  getContainerLength();
 }
+
+function calcContainerLength() {
+    allPizzaContainers = document.getElementsByClassName("randomPizzaContainer");
+    pizzaContainerLength = document.getElementsByClassName("randomPizzaContainer").length;  
+}
+
+appendToPizzasDiv(calcContainerLength);
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
 window.performance.mark("mark_end_generating");
@@ -489,12 +494,18 @@ function getLeftTop() {
   var cols = 8;
   var s = 256;
 
-  for (var i = 0; i < 30; i++) {
+  function fillLeftTopArrays(bLeft, sTop) {
+    leftArr.push(bLeft);
+    topArr.push(sTop);    
+  }
+
+  for (var i = 29; i >= 0; i--) {
     var bLeft = (i % cols) * s;
     var sTop = (Math.floor(i / cols) * s) + 'px';
-    
-    leftArr.push(bLeft);
-    topArr.push(sTop);
+
+    (function(sameBLeft, sameSTop) {
+      return fillLeftTopArrays(sameBLeft, sameSTop);
+    })(bLeft, sTop);
   }
 }
 
@@ -503,17 +514,23 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   // for all values that are fixed, calculate them outside of the for loop inside the updatePositions() function;
-  var max = document.body.scrollTop / 1250;
-  var max2 = document.body.scrollHeight - window.innerHeight;
+  // var max = document.body.scrollTop / 1250;
+  var max = document.body.scrollHeight - window.innerHeight;
   var maxWidth = document.body.scrollWidth - window.innerWidth;
-  // var percent = (window.pageYOffset / max);
+  var percent = (window.pageYOffset / max) * 5;
 
   countItems();
 
-  for (var i = 29; i >= 0; i--) {
-    var phase = Math.sin(max + (i % 5));
+  function phaseChange(i) {
+    var phase = Math.sin(percent + (i % 5)) * 100;
 
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.left = items[i].basicLeft + phase + 'px';    
+  }
+
+  for (var i = 29; i >= 0; i--) {
+    (function(sameI) {
+      return phaseChange(sameI);
+    })(i);
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -536,14 +553,21 @@ document.addEventListener('DOMContentLoaded', function() {
   var allMovingPizzas = document.getElementById("movingPizzas1");
   var imgSrc = "images/transparent.png";
 
-  for (var i = 0; i < 30; i++) {
+  function makeElem(i) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = imgSrc;    
     elem.basicLeft = leftArr[i];
     elem.style.top = topArr[i];
-    allMovingPizzas.appendChild(elem);
+    allMovingPizzas.appendChild(elem);    
   }
+
+  for (var i = 29; i >= 0; i--) {
+    (function(sameI) {
+      return makeElem(sameI);
+    })(i);
+  }
+
   updatePositions();
 });
 
