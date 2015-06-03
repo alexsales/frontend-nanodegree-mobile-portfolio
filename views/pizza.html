@@ -37,18 +37,24 @@
 	  z-index: -1;
 	  height: 94px;
 	  width: 73px;
-	  -webkit-backface-visibility: hidden;
-	  backface-visibility: hidden;
-	  -webkit-transform: rotate(0deg);
-	  transform: rotate(0deg);
-	  -webkit-perspective: 1000px;
-	  perspective: 1000px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
 	}
 
 	.randomPizzaContainer {
 	  float: left;
 	  display: flex;
+    width: 33.33%;
+    height: 325px;
 	}
+
+  .randomPizzaContainer img {
+    background-image: url("images/pizza.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
 
 	.randomPizzaContainer:after {
 	  content: "";
@@ -80,12 +86,21 @@
   @media only screen and (max-width: 991px) {
     .col-md-4 img.img-responsive {
       background-image: url('images/pizzeria-720.jpg');
+      width: 720px;
+      height: 540px;
     }
   }
 
   @media only screen and (min-width: 992px) {
     .col-md-4 img.img-responsive {
       background-image: url('images/pizzeria-360.jpg');
+      max-width: 360px;
+      width: 360px;
+      height: 270px;
+    }
+    .col-md-12.hundreds-recipes {
+      width: 90%;
+      margin-left: 10%;
     }
   }
 
@@ -129,11 +144,11 @@
     </div>
     <div id="callToAction" class="row">
       <div class="col-md-4">
-        <img src="images/transparent-720.png" class="img-responsive"> <!-- Image credit to: http://commons.wikimedia.org/wiki/File:HK_TST_night_%E5%98%89%E8%98%AD%E9%81%93_Granville_Road_restaurant_Paisano's_Pizzeria_pizza_Dec-2013.JPG -->
+        <img src="images/transparent-3.png" class="img-responsive"> <!-- Image credit to: http://commons.wikimedia.org/wiki/File:HK_TST_night_%E5%98%89%E8%98%AD%E9%81%93_Granville_Road_restaurant_Paisano's_Pizzeria_pizza_Dec-2013.JPG -->
       </div>
       <div class="col-md-8">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12 hundreds-recipes">
             <h2>We Have Hundreds of Pizza Recipes!</h2>            
             <p>At Cam's Pizzeria, we know you want options. Pepperoni? Boring. Cheese? No way! Sausage? C'mon, let's get creative.</p>
 
@@ -197,7 +212,7 @@
         <div id="randomPizzas" class="row">
           <div id="pizza0" class="randomPizzaContainer" style="width:33.33%;">
             <div class="col-md-6">
-              <img src="images/pizza.png" class="img-responsive">
+              <img src="images/transparent-187.png" class="img-responsive">
             </div>
             <div class="col-md-6">
               <h4>The Udacity Special</h4>
@@ -214,7 +229,7 @@
           </div>
           <div id="pizza1" class="randomPizzaContainer" style="width:33.33%;">
             <div class="col-md-6">
-              <img src="images/pizza.png" class="img-responsive">
+              <img src="images/transparent-187.png" class="img-responsive">
             </div>
             <div class="col-md-6">
               <h4>The Cameron Special</h4>
