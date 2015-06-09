@@ -387,7 +387,7 @@ for (var i = 0; i < 75; i++) {
 
 var pizzaContainerHTML = function(i) {
   return '<div class="col-md-6"><img class="img-responsive" src="images/transparent-187.png"></div><div class="col-md-6"><h4>' + randomNames75[i] + '</h4><ul>' + makeRandomPizzas75[i] +'</ul></div>';
-}
+};
 
 // returns a DOM element for each pizza
 // simplified pizzaElementGenerator function to reduce calculations needed to create each pizza menu item;
@@ -501,7 +501,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 var items;
-var request;
 var leftArr = []; 
 var topArr = [];
 var arrItemsModulusFive = [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4];
@@ -525,7 +524,6 @@ function getLeftTop() {
   }
 }
 
-var items = null;
 var latestKnownScrollY  = 0;
 var ticking = false;
 
@@ -575,8 +573,6 @@ window.addEventListener('scroll', onScroll);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
   var allMovingPizzas = document.getElementById("movingPizzas1");
   var imgSrc = "images/transparent.png";
 
