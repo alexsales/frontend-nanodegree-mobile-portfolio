@@ -31,14 +31,14 @@ Separately, the pizza project involved optimizing animated, scrolling, graphics 
 ==============================
 ## List of Optimizations Made
 
-### STEP 1 (index.html)
+### Step 1 (index.html)
 
 - added script tags to the end of the html file (before the closing body tag)
 - referenced css styles in-page to remove any 'render blocking css'
 - created new optimized images using Photoshop to resize and then ImageOptim to optimize
 - media queries: added new image sizes for different display-width breakpoints to minimize image resizing/rendering calculations that negatively affect performance
 
-### STEP 2 (main.js)
+### Step 2 (main.js)
 
 - took variables that remained constant outside of loops to improve performance
 - moved CSS styles in main.js to the in-page css styles in index.html
@@ -47,11 +47,11 @@ Separately, the pizza project involved optimizing animated, scrolling, graphics 
 - replaced querySelector with getElementById (better performance)
 - replaced querySelectorAll with getElementsByClassName (better performance)
 
-### STEP 3 (main.js, resizePizzas function)
+### Step 3 (main.js, resizePizzas function)
 
 - refactored resizePizzas(), sizeSwitcher() and changePizzaSizes(); reduced all unnecessary calculations since small/medium/large really represent only 3 constant values
 
-### STEP 4 (main.js, updatePositions function)
+### Step 4 (main.js, updatePositions function)
 
 - refactored updatePositions(); replaced document.body.scrollTop with pageYOffset (better performance)
 - decoupled/debounced scroll events consisting of performance-reducing cycles of repeated repaints and reflows; so, by decoupling, only the most recent pageYOffset is stored and used for calculations needed in repainting the sliding background pizzas
