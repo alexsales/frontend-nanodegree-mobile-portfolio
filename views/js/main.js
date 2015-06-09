@@ -306,15 +306,6 @@ function randomName() {
   return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
 }
 
-window.cancelRequestAnimFrame = ( function() {
-    return window.cancelAnimationFrame          ||
-        window.webkitCancelRequestAnimationFrame    ||
-        window.mozCancelRequestAnimationFrame       ||
-        window.oCancelRequestAnimationFrame     ||
-        window.msCancelRequestAnimationFrame        ||
-        clearTimeout
-} )();
-
 window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame       || 
         window.webkitRequestAnimationFrame || 
@@ -401,8 +392,8 @@ var pizzaContainerHTML = function(i) {
 // returns a DOM element for each pizza
 // simplified pizzaElementGenerator function to reduce calculations needed to create each pizza menu item;
 var pizzaElementGenerator = function(i) {
-  // console.log(makeRandomPizzas75[i]);
-  var pizzaContainer;             // contains pizza title, image and list of ingredients
+  // contains pizza title, image and list of ingredients
+  var pizzaContainer;
 
   pizzaContainer = document.createElement("div");
   pizzaContainer.classList.add("randomPizzaContainer");
@@ -430,7 +421,6 @@ var resizePizzas = function(size) {
     switch(size) {
       case "1":
         pizzaSliceSizeId.innerHTML = "Small";
-        // console.log(allPizzasArray[0]);
 
         for (var i = 0; i < pizzaContainerLength; i++) {
           allPizzaContainers[i].style.width = '25%';
@@ -438,7 +428,6 @@ var resizePizzas = function(size) {
         return;
       case "2":
         pizzaSliceSizeId.innerHTML = "Medium";
-        // console.log(allPizzasArray[1]);
 
         for (var i = 0; i < pizzaContainerLength; i++) {
           allPizzaContainers[i].style.width = '33%';
@@ -446,7 +435,6 @@ var resizePizzas = function(size) {
         return;
       case "3":
         pizzaSliceSizeId.innerHTML = "Large";
-        // console.log(allPizzasArray[2]);
 
         for (var i = 0; i < pizzaContainerLength; i++) {
           allPizzaContainers[i].style.width = '50%';
@@ -605,7 +593,7 @@ document.addEventListener('DOMContentLoaded', function() {
       allMovingPizzas.appendChild(pizza.tag);
   }
 
-  onScroll();
+  updatePositions();
 });
 
 getLeftTop();
