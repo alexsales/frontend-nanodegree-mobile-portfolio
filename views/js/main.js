@@ -503,7 +503,16 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 var items;
 var leftArr = []; 
 var topArr = [];
-var arrItemsModulusFive = [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4];
+var rows = Math.floor(window.innerHeight / 256) + 1;
+var numPizzas = rows * 8;
+
+var arrItemsModulusFive = [0, 1, 2, 3, 4, 0, 1, 2, 3, 4];
+var arrItemsModulusFiveNew = [];
+
+for (var i = 0; i < rows; i++) {
+  arrItemsModulusFiveNew = arrItemsModulusFiveNew.concat(arrItemsModulusFive);
+  // console.log(arrItemsModulusFiveNew);
+}
 
 function getLeftTop() {
   var cols = 8;
@@ -514,9 +523,10 @@ function getLeftTop() {
     topArr.push(sTop);    
   }
 
-  for (var i = 29; i >= 0; i--) {
+  for (var i = 0; i < numPizzas; i++) {
     var bLeft = (i % cols) * s;
     var sTop = (Math.floor(i / cols) * s) + 'px';
+    // console.log(i, numPizzas, bLeft, sTop);
 
     (function(sameBLeft, sameSTop) {
       return fillLeftTopArrays(sameBLeft, sameSTop);
@@ -551,8 +561,8 @@ function updatePositions() {
 
   items = document.getElementsByClassName('mover');
 
-  for (var i = 29; i >= 0; i--) {
-    phase = Math.sin(percent + arrItemsModulusFive[i]) * 100 + leftArr[i] - 1000;
+  for (var i = 0; i < numPizzas; i++) {
+    phase = Math.sin(percent + arrItemsModulusFiveNew[i]) * 100 + leftArr[i] - 1000;
     items[i].style.MozTransform = "translateX(" + phase + "px)";
     items[i].style.webkitTransform = "translateX(" + phase + "px)";
     items[i].style.transform = "translateX(" + phase + "px)";
@@ -584,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function() {
     this.tag.style.top = topArr[i];
   };
 
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < numPizzas; i++) {
       var pizza = new Pizza(i);
       allMovingPizzas.appendChild(pizza.tag);
   }
