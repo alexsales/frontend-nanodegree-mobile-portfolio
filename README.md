@@ -76,7 +76,7 @@ Separately, the pizza project involved optimizing animated, scrolling, graphics 
 ==============================
 ## FPS Snapshot Sample - Google Chrome Developer Tools Timeline
 
-![FPS Snapshot Sample](alexsales.github.com/frontend-nanodegree-mobile-portfolio/img/timeline.screenshot.png)
+![FPS Snapshot Sample](img/timeline-screenshot.png)
 
 ==============================
 ## Website Performance Optimization Portfolio Project
