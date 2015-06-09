@@ -1,43 +1,85 @@
-WEBSITE PERFORMANCE OPTIMIZATION
-=======================================
+## Website Performance Optimization
 
-Summary:
+### Summary
+
 Optimized mock portfolio website for both mobile and web. Optimizations needed to produce a Google Pagespeed Insights score of 90 or better.
 
 Separately, the pizza project involved optimizing animated, scrolling, graphics so that the animation created runs at an average 60 FPS.
 
-Link to GitHub Pages:
-http://alexsales.github.io/frontend-nanodegree-mobile-portfolio/
+### Link to GitHub Repository (Master Branch)
 
-Tools / Techniques:
+* [GitHub Repository - Frontend Nanodegree Mobile Portfolio](http://alexsales.github.io/frontend-nanodegree-mobile-portfolio/ "github project repository")
+
+### Tools / Techniques
+
 - CSS Translate and Rotation to promote graphics into their own layers
 - NPM to install Grunt
 - Grunt to run automate tasks such as minify code
 - ngrok to run a secure connection to the local project files
 - Pagespeed Insights
+- Critical rendering path optimizations
 - Minifying text files
 - JS async
 - GitHub
 - GitHub Pages
+- Object-Oriented Programming
+- JSHint
+- Media queries for responsive design
+- requestAnimationFrame for smooth scrolling
+- Chrome Developer Tools (and Timeline Performance Profiling)
 
-=======================================
+==============================
+## List of Optimizations Made
 
-List of resources:
+### STEP 1 (index.html)
 
-https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
-http://www.w3schools.com/jsref/prop_win_innerheight.asp
-http://www.appneta.com/blog/bootstrap-pagespeed/
-http://gruntjs.com/getting-started
-https://blog.openshift.com/day-5-gruntjs-let-someone-else-do-my-tedious-repetitive-tasks/
-https://developer.chrome.com/devtools/docs/rendering-settings
-http://benfrain.com/improving-css-performance-fixed-position-elements/
-http://www.html5rocks.com/en/tutorials/speed/layers/
-http://davidwalsh.name/translate3d
-http://www.w3schools.com/css/css3_3dtransforms.asp
+- added script tags to the end of the html file (before the closing body tag)
+- referenced css styles in-page to remove any 'render blocking css'
+- created new optimized images using Photoshop to resize and then ImageOptim to optimize
+- media queries: added new image sizes for different display-width breakpoints to minimize image resizing/rendering calculations that negatively affect performance
 
-=======================================
+### STEP 2 (main.js)
 
-## Website Performance Optimization portfolio project
+- took variables that remained constant outside of loops to improve performance
+- moved CSS styles in main.js to the in-page css styles in index.html
+- added requestAnimationFrame method for smooth scrolling
+- used a combination of transparent image png's and pizza images as css background-images to improve performance
+- replaced querySelector with getElementById (better performance)
+- replaced querySelectorAll with getElementsByClassName (better performance)
+
+### STEP 3 (main.js, resizePizzas function)
+
+- refactored resizePizzas(), sizeSwitcher() and changePizzaSizes(); reduced all unnecessary calculations since small/medium/large really represent only 3 constant values
+
+### STEP 4 (main.js, updatePositions function)
+
+- refactored updatePositions(); replaced document.body.scrollTop with pageYOffset (better performance)
+- decoupled/debounced scroll events consisting of performance-reducing cycles of repeated repaints and reflows; so, by decoupling, only the most recent pageYOffset is stored and used for calculations needed in repainting the sliding background pizzas
+- prevented repeated calls to requestAnimationFrame, so that it isn't constantly running when no scroll events have taken place; prevented by decoupling the call from the main updatePositions() function and instead adding it to a function that checks if scrolling has taken place (ticking == true) OR if scrolling has not taken place (ticking == false)
+
+### List of Resources
+
+- https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+- http://www.w3schools.com/jsref/prop_win_innerheight.asp
+- http://www.appneta.com/blog/bootstrap-pagespeed/
+- http://gruntjs.com/getting-started
+- https://blog.openshift.com/day-5-gruntjs-let-someone-else-do-my-tedious-repetitive-tasks/
+- https://developer.chrome.com/devtools/docs/rendering-settings
+- http://benfrain.com/improving-css-performance-fixed-position-elements/
+- http://www.html5rocks.com/en/tutorials/speed/layers/
+- http://www.html5rocks.com/en/tutorials/speed/animations/
+- http://davidwalsh.name/translate3d
+- http://www.w3schools.com/css/css3_3dtransforms.asp
+- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css?hl=en
+- http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+
+==============================
+## FPS Snapshot Sample - Google Chrome Developer Tools Timeline
+
+![FPS Snapshot Sample](alexsales.github.com/frontend-nanodegree-mobile-portfolio/img/timeline.screenshot.png)
+
+==============================
+## Website Performance Optimization Portfolio Project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
@@ -68,6 +110,7 @@ Some useful tips to help you get started:
 Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 
 ### Optimization Tips and Tricks
+
 * [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
 * [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
 * [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
@@ -80,6 +123,7 @@ Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 * <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
 
 ### Customization with Bootstrap
+
 The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
 
 * <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
