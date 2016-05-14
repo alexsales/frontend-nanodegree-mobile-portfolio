@@ -830,23 +830,23 @@ FileETag None
     ExpiresByType text/css                              "access plus 1 year"
 
   # Data interchange
-    ExpiresByType application/atom+xml                  "access plus 1 hour"
-    ExpiresByType application/rdf+xml                   "access plus 1 hour"
-    ExpiresByType application/rss+xml                   "access plus 1 hour"
+    ExpiresByType application/atom+xml                  "access plus 1 week"
+    ExpiresByType application/rdf+xml                   "access plus 1 week"
+    ExpiresByType application/rss+xml                   "access plus 1 week"
 
-    ExpiresByType application/json                      "access plus 0 seconds"
-    ExpiresByType application/ld+json                   "access plus 0 seconds"
-    ExpiresByType application/schema+json               "access plus 0 seconds"
-    ExpiresByType application/vnd.geo+json              "access plus 0 seconds"
-    ExpiresByType application/xml                       "access plus 0 seconds"
-    ExpiresByType text/xml                              "access plus 0 seconds"
+    ExpiresByType application/json                      "access plus 1 week"
+    ExpiresByType application/ld+json                   "access plus 1 week"
+    ExpiresByType application/schema+json               "access plus 1 week"
+    ExpiresByType application/vnd.geo+json              "access plus 1 week"
+    ExpiresByType application/xml                       "access plus 1 week"
+    ExpiresByType text/xml                              "access plus 1 week"
 
   # Favicon (cannot be renamed!) and cursor images
     ExpiresByType image/vnd.microsoft.icon              "access plus 1 year"
     ExpiresByType image/x-icon                          "access plus 1 year"
 
   # HTML
-    ExpiresByType text/html                             "access plus 0 seconds"
+    ExpiresByType text/html                             "access plus 1 week"
 
   # JavaScript
     ExpiresByType application/javascript                "access plus 1 year"
@@ -856,8 +856,8 @@ FileETag None
   # Manifest files
     ExpiresByType application/manifest+json             "access plus 1 year"
 
-    ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
-    ExpiresByType text/cache-manifest                   "access plus 0 seconds"
+    ExpiresByType application/x-web-app-manifest+json   "access plus 1 week"
+    ExpiresByType text/cache-manifest                   "access plus 1 week"
 
   # Media files
     ExpiresByType audio/ogg                             "access plus 1 year"
@@ -895,6 +895,23 @@ FileETag None
     ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
 
 </IfModule>
+
+# ----------------------------------------------------------------------
+# | Cache-Control                                                    |
+# ----------------------------------------------------------------------
+
+    # Set cache-control headers for the different file types to improve
+    # site speed.
+
+    # One year for image files
+    <FilesMatch ".(jpg|jpeg|png|gif|ico)$">
+    Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+
+    # One month for css and js
+    <FilesMatch ".(css|js)$">
+    Header set Cache-Control "max-age=2628000, public"
+    </FilesMatch>
 
 # ----------------------------------------------------------------------
 # | File concatenation                                                 |
