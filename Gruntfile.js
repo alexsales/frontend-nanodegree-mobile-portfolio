@@ -28,8 +28,8 @@ module.exports = function(grunt) {
 					collapseWhitespace: true
 				},
 				files: {
-					'dist-html-minify/index.html': ['index.html'],
-					'views/dist-html-minify/pizza.html': ['views/pizza.html']
+					'index.html': ['index_raw.html'],
+					'views/pizza.html': ['views/pizza_raw.html']
 				}
 			}
 		},	
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 				tasks: ['default']
 			},
 			dist_target: {
-				files: ['index.html', 'views/pizza.html'],
+				files: ['index_raw.html', 'views/pizza_raw.html'],
 				tasks: ['default']
 			}
 		}		
