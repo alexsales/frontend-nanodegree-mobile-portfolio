@@ -10,7 +10,7 @@ Both tasks made use of multiple web performance best practices such as concatena
 
 ## Links to GitHub Repository (Master Branch)
 * GitHub Project Repository: [https://github.com/alexsales/frontend-nanodegree-web-performance-optimization/](https://github.com/alexsales/frontend-nanodegree-web-performance-optimization/ "GitHub project repository")
-* GitHub Pages Demo: [http://alexsales.github.io/frontend-nanodegree-web-performance-optimization/](http://alexsales.github.io/frontend-nanodegree-web-performance-optimization/ "GitHub Pages demo")
+* GitHub Pages Demo: [http://alexsales.github.io/frontend-nanodegree-web-performance-optimization/views/pizza.html](http://alexsales.github.io/frontend-nanodegree-web-performance-optimization/views/pizza.html "GitHub Pages demo")
 
 ## Tools / Techniques
 - Critical rendering path optimizations to minimize render-blocking JS and CSS 
